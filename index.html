@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Previewer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- CodeMirror CSS & Theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css" />
+
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+
+    <style>
+        .CodeMirror {
+            min-height: 650px;
+            padding: 1rem;
+            background-color: #1e1e1e;
+        }
+
+        .CodeMirror-scroll {
+            padding: 1rem;
+        }
+
+        /* Optional scrollbar styling */
+        .CodeMirror-scrollbar-filler,
+        .CodeMirror-gutter-filler {
+            background-color: transparent !important;
+        }
+
+        .CodeMirror ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .CodeMirror ::-webkit-scrollbar-thumb {
+            background-color: #4a5568;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-100 to-gray-200  flex items-center justify-centerW font-sans">
+
+    <div class="w-full  bg-white rounded-2xl shadow-2xl  border border-gray-200">
+        <div class="mb-6 text-center">
+            <h1 class="text-3xl font-extrabold mt-4 text-gray-800 tracking-tight"> Web Design Previewer✨</h1>
+
+        </div>
+
+        <!-- Code Editor -->
+        <textarea id="htmlCode" name="htmlCode">
+            <!-- Write or paste your HTML code here -->
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <title>Sample Page</title>
+            </head>
+            <body>
+            <h1>Hello World!</h1>
+            </body>
+            </html>
+        </textarea>
+
+        <!-- Button -->
+        <button id="previewBtn"
+            class="w-full h-fit-scren bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold text-lg py-3  shadow-md transition duration-300 ease-in-out">
+            🔍 Preview in New Tab
+        </button>
+    </div>
+
+    <script>
+        // Initialize CodeMirror
+        const editor = CodeMirror.fromTextArea(document.getElementById("htmlCode"), {
+            mode: "htmlmixed",
+            theme: "material-darker",
+            lineNumbers: true,
+            lineWrapping: true,
+            tabSize: 2
+        });
+
+        // Button click handler
+        $('#previewBtn').click(function() {
+            const html = editor.getValue();
+            const newWindow = window.open();
+            newWindow.document.write(html);
+            newWindow.document.close();
+        });
+    </script>
+</body>
+
+</html>
